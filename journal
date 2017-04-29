@@ -1,0 +1,16 @@
+#!/bin/bash
+#rewriting the journal script by adding commands verfiying user has permission
+#for a file name journal-file
+
+file=$HOME/journal-file
+if test -w $file
+then
+	date >> $file
+	echo -n "Enter name of person or group: "
+	read name
+	echo "$name" >> $file
+	echo >> $file
+
+	echo "------------------------------------" >> $file
+	echo >> $file
+fi #you need this to mark the end of the if else statement

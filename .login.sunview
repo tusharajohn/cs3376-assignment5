@@ -1,0 +1,69 @@
+# $Id: .login.sunview,v 1.1 1998/05/02 21:17:27 amos Exp $ 
+set CPU         = `arch`
+set currenthost = `hostname`
+
+# Machine independent environmentals
+setenv PUBHOME       /usr/local/publisher
+setenv FMHOME        /usr/local/frame.3.1X
+setenv OPENWINHOME   /usr/local/openwin
+setenv EMACSLOADPATH /usr/local/gnumacs/lisp
+setenv NNTPSERVER news.utdallas.edu
+setenv LPR        ljacc
+setenv LPDEST     ljacc
+setenv PRINTER    ljacc
+setenv TYPESETTER psc
+
+set mail = /usr/spool/mail/$USER
+
+# Generic paths
+set spath       = ( /usr/ucb /usr/bin /etc /usr/etc )
+set upath       = ( ~/`arch`bin . )
+set lpath       = ( /usr/local/bin /usr/local/nsr /usr/local/backup/bin  )
+set xpath       = ( /usr/local/X11/bin /usr/local/bin/X11 )
+set opath       = ( $OPENWINHOME/bin $OPENWINHOME/demo )
+
+# Put host/architectural dependent types of things here
+if ( $CPU == sgi ) then
+	set spath = ( /usr/sbin /usr/bsd /bin /usr/bin /etc /usr/etc )
+	set path = ( $upath $lpath $xpath $spath )
+else if ( $CPU == sun3 ) then
+	setenv LD_LIBRARY_PATH  /usr/local/lib:/usr/lib
+	setenv MANPATH /usr/local/man:/usr/share/man
+	set pubpath = ( $PUBHOME/bin $PUBHOME/bin/`arch` )
+	set fpath   = ( $FMHOME/bin )
+	set spath = ( $spath /usr/old )
+	set path = ( $upath $fpath $pubpath $lpath $spath ) 
+else if ( $CPU == sun4 ) then
+	setenv LD_LIBRARY_PATH  /usr/local/lib:/usr/lib
+	setenv MANPATH /usr/local/man:/usr/lang/man:/usr/share/man
+	set pubpath = ( $PUBHOME/bin $PUBHOME/bin/`arch` )
+	set fpath   = ( $FMHOME/bin )
+	set spath = ( /usr/lang $spath /usr/old )
+	set path = ( $upath $fpath $pubpath $lpath $spath )
+else
+	echo " *** Unknown architecture"
+	set path  = ( $upath $lpath $spath )
+endif
+
+tset
+
+unsetenv TERMCAP
+set   noglob
+eval `tset -I -s -m 'network:?vt100'`
+unset noglob
+if ( $TERM == vt100 ) then
+	stty -tabs
+	stty rows 24 cols 80
+endif
+
+# Window manager
+if ( `tty` == /dev/console && ( $CPU == sun3 || $CPU == sun4 ) ) then
+	echo " Type Control-C to abort Sunview startup (5 seconds)"
+	sleep 5
+	    clear
+		setenv DEFAULT_FONT /usr/lib/fonts/fixedwidthfonts/screen.r.14
+		sunview
+		unsetenv DEFAULT_FONT
+	    clear 
+endif
+# $Source: /warez/home/skel/src/RCS/.login.sunview,v $

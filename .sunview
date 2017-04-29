@@ -1,0 +1,11 @@
+#
+# $Id: .sunview,v 1.1 1998/05/02 21:22:14 amos Exp $
+#
+#	default .suntools file
+#	
+cmdtool    -Wp   0   0 -WP    0   0 -Wh  3 -Ww 80 -Wl "<< CONSOLE >>" -WL "console" -C 
+clock      -Wp 497  32 -WP  704   0 -Wi -Wh 1
+cmdtool    -Wp   0  71 -WP  772   0 -Wi -Wh 44 -Ww 80
+textedit   -Wp 259  98 -WP  840   0 -Wi
+mailtool   -Wp 492  71 -WP  908   0 -Wi
+# $Source: /warez/home/skel/src/RCS/.sunview,v $

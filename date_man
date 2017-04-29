@@ -1,0 +1,11 @@
+#!/bin/bash
+while:
+do
+	#firstly display the time
+	echo `date +%r`
+	#now put in 15 sec interval
+	sleep 15
+	#now clear the previous time
+	clear
+#signify end of while loop
+done

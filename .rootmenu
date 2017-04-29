@@ -1,0 +1,46 @@
+#
+# $Id: .rootmenu,v 1.1 1998/05/02 21:20:47 amos Exp $
+#
+#	sunview root menu
+#
+"Shells"		MENU
+	"Command Tool"		cmdtool
+	"Shell Tool"		shelltool
+	"Graphics Tool"         gfxtool
+	"Console"               cmdtool -C
+"Shells"		END
+"Editors"               MENU
+        "Text Editor"		textedit
+        "Defaults Editor"	defaultsedit
+        "Icon Editor"		iconedit
+        "Font Editor"		fontedit
+"Editors"               END
+"Tools"            	MENU
+	"Mail Tool"             mailtool
+        "Dbx (debug) Tool"   dbxtool
+        "Performance Meter"	MENU
+                "Percent CPU Used"			perfmeter -v cpu
+                "Ethernet Packets"                      perfmeter -v pkts
+                "Swapped Jobs"                          perfmeter -v swap
+                "Disk Transfers"                        perfmeter -v disk
+        "Performance Meter"	END
+        "Clock"			MENU
+                	</usr/include/images/clock.icon>        clock
+                	</usr/include/images/clock.rom.icon>    clock -r
+        "Clock"         	END
+"Tools"			END
+"Services"		MENU
+        "Redisplay All"         REFRESH
+        "Printing"      	MENU
+                "Check Printer Queue"   sh -c "echo; echo '-----------------'; echo 'Printer queue'; lpq; echo '-----------------'"
+                "Print Selected Text"   sh -c "get_selection | lpr ; echo 'Selection printed'."
+        "Printing"      	END
+	"Remote Login"		MENU
+		"Command Tool"  cmdtool csh -c "echo -n 'Hostname? '; exec rlogin $<"
+                "Shell Tool"    shelltool csh -c "echo -n 'Hostname? '; exec rlogin $<"
+        "Remote Login"		END
+	"Save Layout"   sh -c "mv -f $HOME/.sunview $HOME/.sunview-;toolplaces>.sunview; echo 'Screen layout saved (Previous layout in .sunview-)'"
+        "Lock Screen"           lockscreen
+"Services"      	END
+"Exit SunView"          EXIT
+# $Source: /warez/home/skel/src/RCS/.rootmenu,v $

@@ -1,0 +1,22 @@
+set retrieveinterval='300'
+set bell='0'
+set flash='0'
+set headerlines='10'
+set toolcols='80'
+set nosuppressautoretrieve
+set noshowto
+set popuplines='30'
+set printmail='lpr -p'
+ignore 'x-lines' 'remailed-from' 'errors-to' 'message-id' 'remailed-date' 'apparently-to' 'in-reply-to' 'sent-by' 'references' 'via' 'status' 'id' 'received' 'return-path' 'precedence'
+set indentprefix='> '
+set norecord
+set nodontlogmessages
+set noexpert
+set nohideattachments
+set additionalfields=''
+set folder='Mail'
+set filemenusize='10'
+set filemenu2=''
+set templates='calendar:$OPENWINHOME/share/xnews/client/templates/calendar.tpl'
+set nometoo
+set noallnet

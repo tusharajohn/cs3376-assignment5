@@ -1,0 +1,9 @@
+#!/bin/bash
+#takes name of a directory as an argument and searches the file hierachu rooted #at that directory for zero-longth files
+cat zerdel
+if [ "$1" == "-f" ]
+	then 
+		find $2 -empty -print -exec rm -f {} \;
+	else
+		find $1 -empty -ok rm -f {} \;
+fi

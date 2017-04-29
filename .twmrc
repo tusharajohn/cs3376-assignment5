@@ -1,0 +1,352 @@
+# $Id: .twmrc,v 1.1 1998/05/02 21:23:03 amos Exp $
+#  5 May 1992, John Posey
+#  8jul93, Don Moore 
+
+Color
+{
+
+    BorderColor			"red"
+    BorderTileBackground	"red"
+    BorderTileForeground	"yellow"
+
+    IconBorderColor "red"
+    IconBackground "plum"
+    IconForeground "black"
+
+    IconManagerBackground "medium turquoise"
+    IconManagerForeground "black"
+
+    MenuBackground "white"
+    MenuForeground "navy"
+
+    MenuTitleBackground "medium turquoise"
+    MenuTitleForeground "black"
+
+    MenuShadowColor "dark slate grey"
+
+TitleBackground "medium turquoise"
+	{
+		"infoserv"	"maroon"
+		"csclass"	"maroon"
+		"inca"		"maroon"
+		"apache"	"maroon"
+		"tulpa"		"gold"
+	}
+
+TitleForeground "black"
+	{
+		"infoserv"	"grey"
+		"csclass"	"grey"
+		"inca"		"grey"
+		"apache"	"grey"
+		"tulpa"		"black"
+	}
+
+}
+
+Monochrome
+{
+    BorderColor			"black"
+    BorderTileBackground	"white"
+    BorderTileForeground	"black"
+
+    IconBorderColor "black"
+    IconBackground "white"
+    IconForeground "black"
+
+    IconManagerBackground "white"
+    IconManagerForeground "black"
+
+    MenuBackground "white"
+    MenuForeground "black"
+
+    MenuTitleBackground "white"
+    MenuTitleForeground "black"
+
+    MenuShadowColor "black"
+
+    TitleBackground "white"
+    TitleForeground "black"
+}
+
+#AutoRaise
+#{
+#  "nothing"	# I don't like auto-raise
+#}
+
+BorderWidth	2
+
+TitleFont	"8x13"
+MenuFont	"8x13"
+IconFont	"8x13"
+ResizeFont	"fixed"
+
+NoTitleFocus
+#Zoom 8
+#RandomPlacement
+#NoBackingStore
+#NoSaveUnder
+#DecorateTransients
+DontMoveOff
+UsePPosition "on"
+#NoRaiseOnMove
+#NoRaiseOnResize
+#NoRaiseOnDeiconify
+#WarpCursor
+InterpolateMenuColors
+IconifyByUnMapping
+DontIconifyByUnmapping
+{
+    "cm"
+    "Mail Tool - [None]"
+    "Mail Tool - /usr/spool/mail/$USER"
+}
+
+ShowIconManager
+IconManagerGeometry	"=100x10+4+4"
+IconManagerFont		"variable"
+
+IconManagerDontShow
+{
+    "xclock"
+    "xbiff"
+    "xload"
+}
+
+
+IconDirectory	"/usr/local/X11/include/bitmaps"
+UnknownIcon	"xlogo64"
+#ForceIcons
+Icons
+{
+    "xfd"	"xfd_icon"
+    "xfig"	"xfig.icon"
+    "XTerm"	"xterm.icon"
+}
+
+NoTitle
+{
+  "TWM"
+  "Calculator"
+  "Manual Page"
+  "topBox"
+  "xbiff"
+  "xcalc"
+  "xcalendar"
+  "xclock"
+#  "XTerm Icon Manager"
+}
+
+NoHighlight
+{
+  "xckmail"
+  "dclock"
+}
+
+StartIconified
+{
+	"Manual Page"
+}
+
+
+DefaultFunction f.menu     "windowops"
+WindowFunction  f.function "blob"
+
+#Button = KEYS : CONTEXT : FUNCTION
+#----------------------------------
+Button1 =      : root   : f.menu "hosts"
+Button2 =      : root   : f.menu "TwmWindows"
+Button3 =      : root   : f.menu "rootmenu"
+
+Button1 =      : iconmgr   : f.function "de-raise"
+
+Button1 =      : frame  : f.raise
+Button2 =      : title  : f.move
+
+Button1 =      : frame  : f.raise
+Button2 =      : frame  : f.move
+
+Button1 =      : icon   : f.iconify
+Button2 =      : icon   : f.move
+
+Button1 = c    : frame   : f.delete
+Button1 = c    : title   : f.delete
+
+"L1" =         : all    : f.circledown
+"L2" =         : all    : f.winrefresh
+"L5" =         : all    : f.raise
+"L7" =         : all    : f.iconify
+
+Function "beep-beep"
+{
+    f.beep
+    f.beep
+    f.beep
+    f.beep
+    f.beep
+}
+
+Function "de-raise-n-focus"
+{
+    f.deiconify
+    f.raise
+    f.focus
+}
+
+Function "de-raise"
+{
+    f.deiconify
+    f.raise
+}
+
+Function "raise-n-focus"
+{
+    f.raise
+    f.focus
+}
+
+Function "blob"
+{
+    f.deiconify
+    f.raise
+    f.focus
+    f.lower
+}
+
+menu "rootmenu"
+{
+"Root menu"		f.title
+"OpenLook Utilities"	f.menu "olutilities"
+"xterm"			f.exec "xterm -geometry =80x34 &"
+"X11R4 Utilities"	f.menu "x11r4utilities"
+" "			f.nop
+"Applications"		f.menu "applications"
+" "			f.nop
+"Window Ops"		f.menu "windowops"
+" "			f.nop
+"TWM Ops"		f.menu "twmops"
+" "			f.nop
+"Lockscreen"		f.exec "/usr/local/X11/bin/xlock -time 60 -count 1000 -nice 19 &"
+" "			f.nop
+"Redisplay All"		f.refresh
+" "			f.nop
+"Exit Windows"		f.quit
+}
+
+menu "olutilities"
+{
+"XView Utilities"	f.title
+"answerbook"		f.exec "$OPENWINHOME/answerbook &"
+"calctool"		f.exec "$OPENWINHOME/bin/xview/calctool -Wp 222 4 &"
+"shelltool"		f.exec "$OPENWINHOME/bin/xview/shelltool &"
+"cmdtool"		f.exec "$OPENWINHOME/bin/xview/cmdtool &"
+"debugger"		f.exec "/usr/lang/debugger &"
+"filemgr"		f.exec "$OPENWINHOME/bin/xview/filemgr -Wp 220 4 -Ws 650 870 -Wi &"
+"ico"			f.exec "$OPENWINHOME/demo/ico &"
+"ico2"			f.exec "$OPENWINHOME/demo/ico2 &"
+"iconedit"		f.exec "$OPENWINHOME/bin/xview/iconedit &"
+"mailtool"		f.exec "$OPENWINHOME/bin/xview/mailtool -Wp 220 4 -Ws 662 206 &"
+"tapetool"		f.exec "$OPENWINHOME/bin/xview/tapetool &"
+"textedit"		f.exec "$OPENWINHOME/bin/xview/textedit &"
+"clock"			f.exec "$OPENWINHOME/bin/xview/clock &"
+}
+
+menu "applications"
+{
+"Applications"		f.title
+"Emacs"			f.exec "emacs &"
+"Publisher"		f.exec "publisher &"
+}
+
+menu "x11r4utilities"
+{
+"X11R4 Utilities"	f.title
+"console"		f.exec "xterm -j -sb -sf -sl 256 -geometry =80x34+4+300 -cr blue -ms blue -title Console -n login -C &"
+"xman"			f.exec "xman -pagesize 500x896+649+0 &"
+"oclock"		f.exec "oclock &"
+"xbiff"			f.exec "xbiff -geometry 80x80+112+92 &"
+"xcalc"			f.exec "xcalc -geometry +200+4 &"
+"xclock"		f.exec "xclock -geometry 100x100+112+4 &"
+"xcolors1"		f.exec "xcolors -geometry 1148x772+0+92 -fn *-8-* &"
+"xcolors2"		f.exec "xcolors -start aquamarine1 -geometry 1148x628+0+92 -fn *-8-* &"
+"xcolors3"		f.exec "xcolors -start tan1 -geometry 1148x486+0+92 -fn *-8-* &"
+"xcutsel"		f.exec "xcutsel &"
+"xedit"			f.exec "xedit &"
+"xeyes"			f.exec "xeyes &"
+"xfig"			f.exec "xfig &"
+"xfontsel"		f.exec "xfontsel &"
+"xgc"			f.exec "xgc &"
+"xmag"			f.exec "xmag &"
+"xrn"			f.exec "xrn &"
+}
+
+menu "windowops"
+{
+"Window Ops"		f.title
+"Refresh Window"	f.winrefresh
+"Identify Window"	f.identify
+"Move Window"		f.move
+"ForceMove Window"	f.forcemove
+"Raise Window"		f.raise
+"Lower Window"		f.lower
+"Circle Up"		f.circleup
+"Circle Down"		f.circledown
+"Focus on Window"	f.focus
+"Focus on Root"		f.unfocus
+"(De)Iconify"		f.iconify
+"DeIconify"		f.deiconify
+"Raise or Lower"	f.raiselower
+"Focus on Root"		f.unfocus
+"Raise-n-Focus"		f.function "raise-n-focus"
+" "			f.nop
+"Delete/Dismiss"	f.delete
+" "			f.nop
+"Resize Window"		f.resize
+"Zoom Window"		f.zoom
+"FullZoom Window"	f.fullzoom
+"Horizontal Zoom"	f.hzoom
+"Top Zoom"		f.htzoom
+"Bottom Zoom"		f.hbzoom
+"Right Zoom"		f.vrzoom
+"Left Zoom"		f.vlzoom
+" "			f.nop
+"Destroy Window"	f.destroy
+}
+
+menu "twmops"
+{
+"twm Version"		f.version
+"Show  Icon Mgr"	f.showiconmgr
+"Hide  Icon Mgr"	f.hideiconmgr
+"Sort  Icon Mgr"	f.sorticonmgr
+"Next  Icon Mgr"	f.nexticonmgr
+"Prev  Icon Mgr"	f.previconmgr
+"Right Icon Mgr"	f.righticonmgr
+"Left  Icon Mgr"	f.lefticonmgr
+"Fwd   Icon Mgr"	f.forwiconmgr
+"Bkw   Icon Mgr"	f.backiconmgr
+"Up    Icon Mgr"	f.upiconmgr
+"Dwn   Icon Mgr"	f.downiconmgr
+" "			f.nop
+"Source .twmrc"		f.twmrc
+"Restart twm"		f.restart
+"Cut File"		f.cutfile
+}
+
+#csclass"  ("maroon":"grey")	f.exec "xterm -title csclass	-geometry 80x34+582+75  -e rlogin csclass &"
+menu "hosts"
+{
+"Hosts"			f.title
+"infoserv"    ("maroon":"grey")	f.exec "xrlogin infoserv &"
+"csclass"  ("maroon":"grey")	f.exec "xrlogin csclass &"
+"inca"    ("maroon":"grey")	f.exec "xrlogin inca &"
+"apache"    ("maroon":"grey")	f.exec "xrlogin apache &"
+"Misc"		f.menu "misc"
+}
+
+menu "misc"
+{
+"Misc"		f.title
+"tulpa"    ("gold":"black")	f.exec "xterm -title tulpa	-geometry 80x34+582+75  -e rlogin tulpa &"
+}
+# $Source: /warez/home/skel/src/RCS/.twmrc,v $
